@@ -1,9 +1,9 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace splunge_cookie.Models
+namespace splungecookie.Models
 {
-    public class User : BaseEntity
+    public class UserViewModel : BaseEntity
     {
         [Display(Name = "Name")]
         [Required]
