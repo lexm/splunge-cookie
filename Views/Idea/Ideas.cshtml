@@ -1,0 +1,21 @@
+@{
+    ViewData["Title"] = "Bright Ideas";
+}
+@using splungecookie.Models
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model splungecookie.Models.IdeaViewModel
+
+<h3>Hi, @ViewBag.alias!</h3>
+<form asp-controller="Idea" asp-action="postidea" method="POST">
+    <input asp-for="text">
+    <span asp-validation-for="text"></span>
+    <input type="submit" value="Idea!">
+</form>
+
+@foreach(var idea in ViewBag.ideas)
+{
+    <p>
+        <a href='@string.Format("/users/{0}", @idea.user.userid)'>@idea.user.alias</a>
+        says: @idea.text
+    </p>
+}

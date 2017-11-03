@@ -1,7 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace splunge_cookie.Models
+namespace splungecookie.Models
 {
     public abstract class BaseEntity
     {

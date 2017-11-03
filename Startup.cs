@@ -7,8 +7,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using splungecookie.Models;
+using MySQL.Data.EntityFrameworkCore;
+using MySQL.Data.EntityFrameworkCore.Extensions;
 
-namespace splunge_cookie
+namespace splungecookie
 {
     public class Startup
     {
@@ -28,7 +31,10 @@ namespace splunge_cookie
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.Configure<MySqlOptions>(Configuration.GetSection("DBInfo"));
+            services.AddSession();
             services.AddMvc();
+            services.AddDbContext<BrightContext>(options => options.UseMySQL(Configuration["DBInfo:ConnectionString"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +54,7 @@ namespace splunge_cookie
             }
 
             app.UseStaticFiles();
+            app.UseSession();
 
             app.UseMvc(routes =>
             {

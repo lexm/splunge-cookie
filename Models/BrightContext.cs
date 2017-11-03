@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace splunge-cookie.Models
+namespace splungecookie.Models
 {
     public class BrightContext : DbContext
     {
